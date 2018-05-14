@@ -16,7 +16,11 @@ def main():
 	select_school = driver.find_element_by_id("CTY01")
 	select_school.click()
 	select_semester = Select(driver.find_element_by_id("t_pd"))
-	select_semester.select_by_visible_text("2018 Fall Term")
+	print([x.text for x in select_semester.options])
+	semester = input('Select a semester: ')
+	while semester not in [x.text for x in select_semester.options[1:]]:
+		semester = input('Select a semester: ')
+	select_semester.select_by_visible_text(semester)
 	submit = driver.find_element_by_name("next_btn")
 	submit.click()
 	# driver.save_screenshot('firstpage.png')
@@ -24,7 +28,10 @@ def main():
 	# select subject
 	select_subject = Select(driver.find_element_by_id("subject_ld"))
 	print([x.text for x in select_subject.options])
-	select_subject.select_by_visible_text("Computer Science")
+	subject = input('Select a subject: ')
+	while subject not in [x.text for x in select_subject.options[1:]]:
+		subject = input('Select a subject: ')
+	select_subject.select_by_visible_text(subject)
 	Select(driver.find_element_by_id("courseCareerId")).select_by_visible_text("Undergraduate")
 	driver.find_element_by_id("open_classId").click()
 	# driver.save_screenshot('secondpage.png')
@@ -57,14 +64,14 @@ def main():
 			row_ = row.find_elements_by_xpath("*")
 			for col in row_[1:3]:
 				courses[course].append(col.find_element_by_xpath("*").get_attribute("innerHTML").replace("&nbsp;"," ").replace("&amp;", "&").strip())
-				print('column_link', col.find_element_by_xpath("*").get_attribute("innerHTML").replace("&nbsp;"," ").replace("&amp;", "&").strip())
+				# print('column_link', col.find_element_by_xpath("*").get_attribute("innerHTML").replace("&nbsp;"," ").replace("&amp;", "&").strip())
 			for col in row_[3:8]:
 				courses[course].append(col.get_attribute("innerHTML").replace("&nbsp;"," ").replace("&amp;", "&").strip())
-				print('column', col.get_attribute("innerHTML").replace("&nbsp;"," ").replace("&amp;", "&").strip())
+				# print('column', col.get_attribute("innerHTML").replace("&nbsp;"," ").replace("&amp;", "&").strip())
 			courses[course].append(row_[8].find_element_by_xpath("*").get_attribute("title").replace("&nbsp;"," ").replace("&amp;", "&").strip())
-			print('column', row_[8].find_element_by_xpath("*").get_attribute("title").replace("&nbsp;"," ").replace("&amp;", "&").strip())
+			# print('column', row_[8].find_element_by_xpath("*").get_attribute("title").replace("&nbsp;"," ").replace("&amp;", "&").strip())
 			courses[course].append(row_[9].get_attribute("innerHTML").replace("&nbsp;"," ").replace("&amp;", "&").strip())
-			print('column', row_[9].get_attribute("innerHTML").replace("&nbsp;"," ").replace("&amp;", "&").strip())
+			# print('column', row_[9].get_attribute("innerHTML").replace("&nbsp;"," ").replace("&amp;", "&").strip())
 		course_num += 1
 	print(courses)
 
