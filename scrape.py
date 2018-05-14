@@ -75,7 +75,7 @@ def main():
 		course_num += 1
 	print(courses)
 
-	# load course sections
+	# future: load course sections
 	# elem.clear()
 	# elem.send_keys("pycon")
 	# elem.send_keys(Keys.RETURN)
