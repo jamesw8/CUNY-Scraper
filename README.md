@@ -4,7 +4,7 @@ Retrieve CUNY courses by semester and subject programmatically.
 * `pip3 install selenium`
 * Download [ChromeDriver - WebDriver for Chrome](http://chromedriver.chromium.org/) and place in the same directory as the script
 ### Run
-`python3 prac.py`
+`python3 scrape.py`
 
 ## Future
 * Check section timings
